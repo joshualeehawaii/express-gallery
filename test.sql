@@ -2,7 +2,8 @@
 
 INSERT INTO "Galleries" VALUES
 (default,
-'Josh Lee','http://4.bp.blogspot.com/-tR8OhrioILE/VN5XIn0OhCI/AAAAAAAAASs/hkjND6vm-Sw/s1600/Adam.jpg,
-This a test',
+'notcot.org',
+'http://www.notempire.com/images/uploads/self-5.jpg',
+'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum ad et, dolorum cum officiis laboriosam',
 NOW(),
 NOW());
