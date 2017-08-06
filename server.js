@@ -1,11 +1,16 @@
 /*jshint esversion: 6 */
-var express = require('express');
-var app = express();
+const express = require('express');
+const app = express();
 const PORT = process.envPORT || 3000;
-const db = require('./models'); //pulling in files from models directory
+const db = require('./models');
+const Gallery = db.Gallery;
+const galleryRoutes = require('./routes/galleryRoutes.js');
+
+//this is mounting the routes to the server
+app.use('/gallery', galleryRoutes);
 
 //server
-const server = app.listen(PORT, () =>{
+const server = app.listen(PORT, () => {
   db.sequelize.sync();
-  console.log(`Running on ${PORT}`);
+  console.log(`Server Running on Port ${PORT}`);
 });
