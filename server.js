@@ -6,6 +6,16 @@ const db = require('./models');
 const Gallery = db.Gallery;
 const galleryRoutes = require('./routes/galleryRoutes.js');
 
+//handlebars
+require('handlebars');
+const exphbs = require('express-handlebars');
+const hbs = exphbs.create({
+  defaultLayout: 'main',
+  extname: 'hbs'
+});
+app.engine('hbs', hbs.engine);
+app.set('view engine', 'hbs');
+
 //this is mounting the routes to the server
 app.use('/gallery', galleryRoutes);
 
