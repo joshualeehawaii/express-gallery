@@ -19,6 +19,7 @@
   "homepage": "https://github.com/joshualeehawaii/express-gallery#readme",
   "dependencies": {
     "express": "^4.15.3",
+    "handlebars": "^4.0.10",
     "pg": "^7.1.0",
     "pg-hstore": "^2.3.2",
     "sequelize": "^4.4.2"
