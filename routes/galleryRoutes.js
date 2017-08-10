@@ -1,7 +1,7 @@
 /*jshint esversion: 6 */
 const express = require('express');
 const router = express.Router();
-const bp = require('body-parser');
+
 const db = require('../models');
 const Gallery = db.Gallery;
 
@@ -26,13 +26,25 @@ router
 router
  .post('/', (req, res) => {
   console.log('/gallery POST recieved');
-  res.end();
+  console.log('this is the request title =', req.body);
+  Gallery.create({
+    title: req.body.title,
+    author: req.body.author,
+    link: req.body.link,
+    description: req.body.description
+  }).then((data) => {
+    console.log(data);
+    console.log('new image post =', data);
+    res.end();
+  }).catch((err) => {
+    console.log(err);
+  });
 });
 
 router
  .get('/new', (req, res) => {
   console.log('/gallery/new GET new recieved');
-  res.end();
+  res.render('new');
 });
 
 router

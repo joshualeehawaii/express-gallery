@@ -5,6 +5,7 @@ const PORT = process.envPORT || 3000;
 const db = require('./models');
 const Gallery = db.Gallery;
 const galleryRoutes = require('./routes/galleryRoutes.js');
+const bp = require('body-parser');
 
 //handlebars
 require('handlebars');
@@ -15,6 +16,9 @@ const hbs = exphbs.create({
 });
 app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
+
+//app level middleware to read the post data
+app.use(bp.urlencoded());
 
 //this is mounting the routes to the server
 app.use('/gallery', galleryRoutes);
