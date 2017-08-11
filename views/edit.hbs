@@ -1,9 +1,12 @@
 <h1>_ARCHITEKT</h1>
-<form>
-  Author:<br>
-  <input type="text" name="Author"><br>
-  Link:<br>
-  <input type="text" name="Link"><br>
-  Description:<br>
-  <input type="text" name="Description">
+<img src="{{link}}" alt="oops">
+<form action="/gallery/{{id}}/edit" method="POST">
+<input type="hidden" name="_method" value="PUT">
+  {{author}}<br>
+  <input type="text" name="author"><br>
+  {{link}}<br>
+  <input type="text" name="link"><br>
+  {{description}}<br>
+  <input type="text" name="description"><br>
+  <input type="submit" value="Submit">
 </form>
