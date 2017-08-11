@@ -18,7 +18,7 @@ app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
 
 //app level middleware to read the post data
-app.use(bp.urlencoded());
+app.use(bp.urlencoded()); //this is to read the object being sent through from the post request
 
 //this is mounting the routes to the server
 app.use('/gallery', galleryRoutes);
