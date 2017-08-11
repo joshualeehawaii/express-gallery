@@ -16,10 +16,47 @@ router
   res.end();
 });
 
+//this is the new one
 router
  .get('/:id/edit', (req, res) => {
-  console.log(`/gallery/${req.params.id}/edit GET ID and edit recieved`);
-  res.render('edit');
+   console.log(`/gallery/${req.params.id} GET ID recieved`);
+   Gallery.findById(parseInt(req.params.id))
+  .then((photo) => {
+    console.log('gallery id = ', photo);
+    var data = {
+     id: photo.id,
+     title: photo.tile,
+     author: photo.author,
+     link: photo.link,
+     description: photo.description
+   };
+   res.render('edit', data);
+  })
+  .catch ((err) => {
+   console.log(err);
+  });
+});
+
+router
+ .put('/:id/edit', (req, res) => {
+  console.log(`/gallery/${req.params.id}/edit POST ID and edit recieved`);
+  return Gallery.update({
+   author: req.body.author,
+   link: req.body.link,
+   description: req.body.description
+  }, {
+   where: {
+    id: req.params.id
+   }
+  })
+  .then((data) => {
+    console.log(data);
+    console.log('data that was edited', data);
+    res.redirect('/gallery'); //send the user back to the main page after the edit
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 });
 
 router
@@ -34,7 +71,7 @@ router
   .then((data) => {
     console.log(data);
     console.log('new image post =', data);
-    res.end();
+    res.redirect('/gallery');
   })
   .catch((err) => {
    console.log(err);
@@ -51,13 +88,13 @@ router
  .get('/:id', (req, res) => {
    console.log(`/gallery/${req.params.id} GET ID recieved`);
    Gallery.findById(parseInt(req.params.id))
-  .then ((detail) => {
-    console.log('gallery id = ', detail);
+  .then((photo) => {
+    console.log('gallery id = ', photo);
     var data = {
-     title: detail.tile,
-     author: detail.author,
-     link: detail.link,
-     description: detail.description
+     title: photo.tile,
+     author: photo.author,
+     link: photo.link,
+     description: photo.description
    };
    res.render('detail', data);
   })
