@@ -1,13 +1,31 @@
-<h1>_ARCHITEKT</h1>
-<h2>{{author}}</h2>
-<img src="{{link}}" alt="oops">
-<p>{{description}}</p>
+<div class="wrapper">
+ <div class="one">
+  <hr>
+  <h1>_ARCHITEKT</h1>
+ </div>
 
-<form action="http://localhost:3000/gallery/{{id}}/edit">
-    <input type="submit" value="Edit Photo" />
-</form>
+ <div class="two">
+  <hr>
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate eius ea nam excepturi dolor, debitis adipisci dolorem consectetur placeat voluptas itaque voluptatem sed quod, id doloremque quisquam dolorum optio perferendis!</p>
+ </div>
 
-<form action="#" method="POST">
-<input type="hidden" name="_method" value="DELETE">
-    <input type="submit" value="Delete Photo" />
-</form>
+ <div class="five">
+  <div class="image">
+   <img src="{{link}}" alt="oops">
+  </div>
+
+  <h2>{{author}}</h2>
+  <p>{{description}}</p>
+ </div>
+
+ <div class="form">
+  <form action="http://localhost:3000/gallery/{{id}}/edit">
+   <input type="submit" value="Edit Photo" />
+  </form>
+  <form action="#" method="POST">
+   <input type="hidden" name="_method" value="DELETE">
+   <input type="submit" value="Delete Photo" />
+  </form>
+ </div>
+
+</div>
