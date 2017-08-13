@@ -7,23 +7,28 @@ const Gallery = db.Gallery;
 router
  .delete('/:id', (req, res) => {
   console.log(`/gallery/${req.params.id} delete ID recieved`);
-  res.end();
+  Gallery.destroy({
+   where: {
+     id: req.params.id
+    }
+  })
+  .then((data) => {
+    console.log(data);
+    console.log('data that was deleted', data);
+    res.redirect('/gallery'); //send the user back to the main page after the delete
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 });
 
-router
- .put('/:id', (req, res) => {
-  console.log(`/gallery/${req.params.id} PUT ID recieved`);
-  res.end();
-});
-
-//this is the new one
 router
  .get('/:id/edit', (req, res) => {
    console.log(`/gallery/${req.params.id} GET ID recieved`);
    Gallery.findById(parseInt(req.params.id))
-  .then((photo) => {
-    console.log('gallery id = ', photo);
-    var data = {
+ .then((photo) => {
+   console.log('gallery id = ', photo);
+   var data = {
      id: photo.id,
      title: photo.tile,
      author: photo.author,
@@ -91,6 +96,7 @@ router
   .then((photo) => {
     console.log('gallery id = ', photo);
     var data = {
+     id: photo.id,
      title: photo.tile,
      author: photo.author,
      link: photo.link,
