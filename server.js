@@ -8,6 +8,10 @@ const galleryRoutes = require('./routes/galleryRoutes.js');
 const bp = require('body-parser');
 const methodOverride = require('method-override');
 
+//exposing the public folder
+app.use(express.static('public'));
+
+
 //app level middleware to read the post data
 app.use(bp.urlencoded()); //this is to read the object being sent through from the post request
 
