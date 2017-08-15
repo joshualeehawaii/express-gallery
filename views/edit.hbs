@@ -1,12 +1,26 @@
-<h1>_ARCHITEKT</h1>
-<img src="{{link}}" alt="oops">
-<form action="/gallery/{{id}}/edit" method="POST">
-<input type="hidden" name="_method" value="PUT">
-  {{author}}<br>
-  <input type="text" name="author"><br>
-  {{link}}<br>
-  <input type="text" name="link"><br>
-  {{description}}<br>
-  <input type="text" name="description"><br>
-  <input type="submit" value="Submit">
-</form>
+<div class="wrapper">
+ <div class="one">
+  <hr>
+  <h1>_ARCHITEKT</h1>
+ </div>
+
+ <div class="two">
+  <hr>
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate eius ea nam excepturi dolor, debitis adipisci dolorem consectetur placeat voluptas itaque voluptatem sed quod, id doloremque quisquam dolorum optio perferendis!</p>
+ </div>
+
+ <div class="five">
+  <img src="{{link}}" alt="oops">
+  <form action="/gallery/{{id}}/edit" method="POST">
+   <input type="hidden" name="_method" value="PUT">
+   {{author}}<br>
+   <input type="text" name="author"><br>
+   {{link}}<br>
+   <input type="text" name="link"><br>
+   {{description}}<br>
+   <input type="text" name="description"><br>
+   <input type="submit" value="Submit">
+  </form>
+ </div>
+
+</div>
