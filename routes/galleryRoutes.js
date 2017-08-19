@@ -86,8 +86,8 @@ router
 
 router
  .post('/login', passport.authenticate('local', {
-  successRedirect: '/new',
-  failureRedirect: '/login'
+  successRedirect: '/gallery',
+  failureRedirect: '/gallery/login'
 }));
 
 router
@@ -127,7 +127,7 @@ router
    console.log('/gallery GET recieved');
    Gallery.findAll()
   .then((gallery) => {
-   console.log('gallery = ', gallery);
+   //console.log('gallery = ', gallery);
    res.render('index', {gallery: gallery});
   })
   .catch((err) => {
