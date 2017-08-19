@@ -39,6 +39,27 @@ passport.use(new LocalStrategy(
     });
   }));
 
+passport.serializeUser(function(user, done) {
+  console.log('serializing the user into session');
+  done(null, user.id);
+});
+
+passport.deserializeUser(function(userId, done) {
+  console.log('adding user information into the req object');
+  User.findOne({
+    where :{
+      id: userId
+    }
+  }).then((user) => {
+    return done(null, {
+      id: user.id,
+      username: user.username
+    });
+  }).catch((err) => {
+    done(err, user);
+  });
+});
+
 
 //exposing the public folder
 app.use(express.static('public'));
