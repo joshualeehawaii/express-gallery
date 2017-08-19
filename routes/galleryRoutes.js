@@ -3,6 +3,7 @@ const express = require('express');
 const router = express.Router();
 const db = require('../models');
 const Gallery = db.Gallery;
+const passport = require('passport');
 
 router
  .delete('/:id', (req, res) => {
@@ -81,6 +82,18 @@ router
   .catch((err) => {
    console.log(err);
   });
+});
+
+router
+ .post('/login', passport.authenticate('local', {
+  successRedirect: '/new',
+  failureRedirect: '/login'
+}));
+
+router
+ .get('/login', (req, res) => {
+  console.log('/gallery/login GET recieved');
+  res.render('login');
 });
 
 router
