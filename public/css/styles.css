@@ -1,3 +1,5 @@
+/* trying to use both flexbox and CSS Grid in this design */
+
 .wrapper {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -5,19 +7,23 @@
   grid-auto-rows: minmax(100px, auto);
 }
 
+/* one - logo */
 .one {
   grid-column: 1 / 3;
   grid-row: 1;
   justify-content: center;
 }
 
+/* two - side text */
 .two {
+  display: flex;
   grid-column: 3 / 4;
   grid-row: 1;
   color: grey;
   opacity: .8;
 }
 
+/* three - feature photo */
 .three {
   display: flex;
   grid-column: 1 / 4;
@@ -25,27 +31,32 @@
   justify-content: center;
 }
 
+/* four - photo cards */
 .four {
   display: flex;
   flex-direction: column;
   box-shadow: 0 2px 4px 0 rgba(0,0,0,0.1);
 }
 
+/* all images */
 .image {
   display: flex;
   align-content: center;
   justify-content: center;
 }
 
+/* all hr tags */
 hr {
   border-top: 1px dotted #8c8b8b;
 }
 
+/* all h1 tags */
 h1 {
   padding-left: 400px;
   color: grey;
 }
 
+/* all h2 tags */
 h2 {
   font-size: 1rem;
   color: grey;
@@ -54,6 +65,7 @@ h2 {
   padding-left: 40px;
 }
 
+/* all p tags */
 p {
   font-size: 1rem;
   color: grey;
@@ -63,12 +75,24 @@ p {
   padding-bottom: 20px;
 }
 
+/* five - details card */
 .five {
   grid-column-start: 2;
   grid-column-end: 3;
   box-shadow: 0 2px 4px 0 rgba(0,0,0,0.1);
 }
 
+/* six - edit card */
+.six {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.1);
+}
+
+/* all forms */
 .form {
   grid-column-start: 2;
   display: flex;
@@ -76,6 +100,7 @@ p {
   justify-content: center;
 }
 
+/* styles for the form to add a new photo */
 .newForm {
   display: flex;
   grid-column: 2 / 3;
@@ -83,9 +108,10 @@ p {
   justify-content: center;
   box-shadow: 0 2px 4px 0 rgba(0,0,0,0.1);
   color: grey;
-  font-size: 1.5rem;
+  font-size: 1rem;
 }
 
+/* styles for submit inputs */
 input[type = submit] {
   width: 100%;
   background-color: grey;
@@ -96,13 +122,32 @@ input[type = submit] {
   border-radius: 4px;
 }
 
+/* change color hover over buttons */
 input[type = submit]:hover {
   background-color: black;
 }
 
+/* styles for text inputs */
 input[type = text] {
   border: 1px solid grey;
   border-radius: 4px;
   width: 100%;
   height: 2rem;
+}
+
+/* styles for text inputs */
+input[type = password] {
+  border: 1px solid grey;
+  border-radius: 4px;
+  width: 100%;
+  height: 2rem;
+}
+
+
+/* styles for the form to edit a photo */
+.editForm {
+  display: flex;
+  flex-direction: column;
+  color: grey;
+  font-size: 1rem;
 }
