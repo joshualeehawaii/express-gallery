@@ -1,24 +1,26 @@
 <div class="wrapper">
+
  <div class="one">
   <hr>
-  <h1>_ARCHITEKT</h1>
+  <h1>_ARCHITEKT<a href="/gallery/new"></a></h1>
  </div>
+
 
  <div class="two">
   <hr>
   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate eius ea nam excepturi dolor, debitis adipisci dolorem consectetur placeat voluptas itaque voluptatem sed quod, id doloremque quisquam dolorum optio perferendis!</p>
  </div>
 
- <div class="six">
-  <img src="{{link}}" alt="oops">
-  <form  class="editForm" action="/gallery/{{id}}/edit" method="POST">
-   <input type="hidden" name="_method" value="PUT">
-   {{author}}<br>
-   <input type="text" name="author"><br>
-   {{link}}<br>
-   <input type="text" name="link"><br>
-   {{description}}<br>
-   <input type="text" name="description"><br>
+ <div class="three">
+  <img class="featurePhoto" src="http://ishowmy.support/img/user-icon-360x360.jpg">
+ </div>
+
+ <div class="newForm">
+  <form action="#" method="POST">
+   _USERNAME:<br>
+   <input type="text" name="username"><br>
+   _PASSWORD:<br>
+   <input type="password" name="passowrd"><br>
    <input type="submit" value="Submit">
   </form>
  </div>
