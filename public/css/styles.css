@@ -151,3 +151,28 @@ input[type = password] {
   color: grey;
   font-size: 1rem;
 }
+
+a {
+  text-decoration: none;
+}
+
+.newuser {
+  background-color: grey;
+  color: white;
+  padding: 14px 25px;
+  text-align: center;
+  text-decoration: none;
+  margin-right: 10px;
+  height: 30px;
+  width: 200px
+}
+
+.login {
+  background-color: grey;
+  color: white;
+  padding: 14px 25px;
+  text-align: center;
+  text-decoration: none;
+  height: 30px;
+  width: 200px;
+}
