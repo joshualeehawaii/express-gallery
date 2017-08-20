@@ -4,40 +4,64 @@ const app = express();
 const PORT = process.envPORT || 3000;
 const db = require('./models');
 const {Gallery, User} = db;
-//const Gallery = db.Gallery;
 const galleryRoutes = require('./routes/galleryRoutes.js');
+const loginRoutes = require('./routes/loginRoutes.js');
 const bp = require('body-parser');
-const methodOverride = require('method-override');
-
-//passports
+const session = require('express-session');
 const passport = require('passport');
+const RedisStore = require('connect-redis')(session);
 const LocalStrategy = require('passport-local').Strategy;
+const methodOverride = require('method-override');
+const CONFIG = require('./config/config.json');
+const bcrypt = require('bcrypt');
+const saltRound = 10;
+
+app.use(session({
+
+  store: new RedisStore(),
+  secret: CONFIG.SESSION_SECRET,
+  cookie: {
+    maxAge: 1000000
+  },
+  saveUninitialized: true
+
+}));
 
 app.use(passport.initialize());
 app.use(passport.session());
 
 passport.use(new LocalStrategy(
-  function(username, password, done) {
-    console.log('checking username', username);
-    console.log('checking password', password);
-    User.findOne({
-       where : {
-          username : username
-        }
-      }).then((user) => {
-      console.log('This is the user', user);
-      if (user.password === password) {
-        console.log('username and password successful');
-        return done(null, user);
-      } else {
-       console.log('password was incorrect');
-       return done(null, false, { message: 'incorrect password' });
-      }}).catch((err) => {
-       console.log('username not found');
-       console.log(err);
-      return done(null, false, { message: 'incorrect username' });
+ function(username, password, done) {
+  console.log('checking username', username);
+  console.log('checking password', password);
+  User.findOne({
+   where : {
+   username : username
+   }})
+  .then((user) => {
+   // password === comes from the client POST request
+   // user.password === hashed password
+    console.log('password', password);
+    console.log('user.password', user.password);
+    bcrypt.compare(password, user.password)
+  .then( result => {
+    console.log('result', result);
+    if(result){
+     console.log('Username and password correct!');
+     return done(null, user);
+    }else{
+     console.log('password does not match');
+     return done(null, false, { message: 'Incorrect Password' });
+    }})
+    .catch( err => {
+     console.log(err);
     });
-  }));
+  })
+  .catch((err) => {
+   console.log(err);
+   return done(null, false, { message: 'Incorrect Username' });
+  });
+ }));
 
 passport.serializeUser(function(user, done) {
   console.log('serializing the user into session');
@@ -92,6 +116,7 @@ app.set('view engine', 'hbs');
 
 //this is mounting the routes to the server
 app.use('/gallery', galleryRoutes);
+app.use('/login', loginRoutes);
 
 //server
 const server = app.listen(PORT, () => {
