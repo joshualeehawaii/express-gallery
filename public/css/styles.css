@@ -176,3 +176,19 @@ a {
   height: 30px;
   width: 200px;
 }
+
+.addPhoto {
+  display: flex;
+  grid-row: 3;
+  justify-content: center;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.1);
+  color: grey;
+  font-size: 3rem;
+  background-image: url("http://png-1.vector.me/files/images/2/8/281745/camera_thumb");
+  opacity: .6;
+}
+
+.innertext {
+  color: red;
+  background-color: white;
+}
