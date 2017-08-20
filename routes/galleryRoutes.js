@@ -4,6 +4,21 @@ const router = express.Router();
 const db = require('../models');
 const Gallery = db.Gallery;
 const passport = require('passport');
+const loginRoute = require('../routes/loginRoutes.js');
+const User = db.User;
+const bcrypt = require('bcrypt');
+const saltRound = 10;
+
+function userAuthenticated(req, res, next){
+  if (req.isAuthenticated()) {
+
+    console.log('user is good :)');
+    next(); // middleware succeeded move on to next
+  } else {
+    console.log('user not good :(');
+    res.redirect('/login');
+  }
+}
 
 router
  .delete('/:id', (req, res) => {
@@ -24,7 +39,7 @@ router
 });
 
 router
- .get('/:id/edit', (req, res) => {
+ .get('/:id/edit', userAuthenticated, (req, res) => {
    console.log(`/gallery/${req.params.id} GET ID recieved`);
    Gallery.findById(parseInt(req.params.id))
  .then((photo) => {
@@ -85,15 +100,33 @@ router
 });
 
 router
- .post('/login', passport.authenticate('local', {
-  successRedirect: '/gallery',
-  failureRedirect: '/gallery/login'
-}));
+ .get('/user', (req, res) => {
+  console.log('/gallery/newUser GET recieved');
+  res.render('user');
+});
 
 router
- .get('/login', (req, res) => {
-  console.log('/gallery/login GET recieved');
-  res.render('login');
+ .post('/user',(req, res) => {
+   console.log('/gallery/user POST recieved');
+   console.log('this is the request title =', req.body);
+   bcrypt.genSalt(saltRound)
+   .then( salt => {
+    return bcrypt.hash(req.body.password, salt);
+   })
+   .then( hash => {
+    User.create({
+     username: req.body.username,
+     password: hash
+    });
+   })
+   .then((data) => {
+    console.log(data);
+    console.log('new user post =', data);
+    res.redirect('/gallery');
+  })
+  .catch((err) => {
+   console.log(err);
+  });
 });
 
 router
