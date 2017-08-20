@@ -19,7 +19,7 @@
  {{#each gallery}}
   <div class="four">
    <div class="image">
-    <a href="http://localhost:3000/gallery/{{id}}">
+    <a href="/gallery/{{id}}">
      <img src="{{link}}" alt="oops">
     </a>
   </div>
@@ -27,5 +27,13 @@
   <p>{{description}}</p>
   </div>
  {{/each}}
+
+ <div class="addPhoto">
+  <a href="/gallery/new">
+   <div class="innertext">
+    <h3>ADD YOUR PHOTO</h3>
+   </div>
+  </a>
+ </div>
 
 </div>
